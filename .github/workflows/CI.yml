@@ -1,0 +1,30 @@
+name: Testing OpenFOAM-8 on ubuntu-20.04
+
+on:
+  push:
+    branches: '*'
+  workflow_dispatch:
+
+jobs:
+  Testing:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install OpenFOAM
+      run: |
+        sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -" &&
+        sudo add-apt-repository http://dl.openfoam.org/ubuntu &&
+        sudo apt-get update &&
+        sudo apt-get -y install openfoam8
+    - name: Run simpleFoam T3A
+      run: |
+        . /opt/openfoam8/etc/bashrc &&
+        mkdir -p $FOAM_RUN &&
+        cp -r $FOAM_TUTORIALS $FOAM_RUN &&
+        cd $FOAM_RUN/tutorials/incompressible/simpleFoam/T3A &&
+        ./Allrun &&
+        tail -n4 log.simpleFoam | head -n1
+
