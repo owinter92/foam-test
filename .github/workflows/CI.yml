@@ -15,7 +15,7 @@ jobs:
     - name: Install OpenFOAM
       uses: owinter92/openfoam8-install@master
     - name: Run simpleFoam
-      run: cat ~/.bashrc && simpleFoam -help
+      run: cat ~/.bashrc && cat /opt/openfoam8/etc/bashrc && simpleFoam -help
       shell: bash --rcfile ~/.bashrc {0}
 
 #    - name: Install OpenFOAM
