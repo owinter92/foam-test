@@ -12,29 +12,35 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
     - name: Install OpenFOAM
-      run: |
-        sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -" &&
-        sudo add-apt-repository http://dl.openfoam.org/ubuntu &&
-        sudo apt-get update &&
-        sudo apt-get -y install openfoam8
-    - name: Run simpleFoam T3A
-      run: |
-        . /opt/openfoam8/etc/bashrc &&
-        mkdir -p $FOAM_RUN &&
-        cp -r $FOAM_TUTORIALS $FOAM_RUN &&
-        cd $FOAM_RUN/tutorials/incompressible/simpleFoam/T3A &&
-        ./Allrun &&
-        tail -n4 log.simpleFoam | head -n1
-    - name: Build foam-test
-      run: |
-        . /opt/openfoam8/etc/bashrc &&
-        mkdir -p $FOAM_RUN &&
-        cd $FOAM_RUN/..
-        git clone https://github.com/owinter92/foam-test.git &&
-        cd foam-test && cd applications && ./Allwmake
-        cp -r $FOAM_TUTORIALS $FOAM_RUN &&
-        cd $FOAM_RUN/tutorials/incompressible/simpleFoam/T3A &&
-        blockMesh && mySimpleFoam
-        tail -n4 log.simpleFoam | head -n1
+      uses: owinter92/openfoam8-install@master
+    - name: Run simpleFoam
+      run: simpleFoam -help
+
+
+
+#    - name: Install OpenFOAM
+#      run: |
+#        sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -" &&
+#        sudo add-apt-repository http://dl.openfoam.org/ubuntu &&
+#        sudo apt-get update &&
+#        sudo apt-get -y install openfoam8
+#    - name: Run simpleFoam T3A
+#      run: |
+#        . /opt/openfoam8/etc/bashrc &&
+#        mkdir -p $FOAM_RUN &&
+#        cp -r $FOAM_TUTORIALS $FOAM_RUN &&
+#        cd $FOAM_RUN/tutorials/incompressible/simpleFoam/T3A &&
+#        ./Allrun &&
+#        tail -n4 log.simpleFoam | head -n1
+#    - name: Build foam-test
+#      run: |
+#        . /opt/openfoam8/etc/bashrc &&
+#        mkdir -p $FOAM_RUN &&
+#        cd $FOAM_RUN/..
+#        git clone https://github.com/owinter92/foam-test.git &&
+#        cd foam-test && cd applications && ./Allwmake
+#        cp -r $FOAM_TUTORIALS $FOAM_RUN &&
+#        cd $FOAM_RUN/tutorials/incompressible/simpleFoam/T3A &&
+#        blockMesh && mySimpleFoam
+#        tail -n4 log.simpleFoam | head -n1
