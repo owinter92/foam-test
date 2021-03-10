@@ -15,7 +15,7 @@ jobs:
     - name: Install OpenFOAM
       uses: owinter92/openfoam8-install@master
     - name: Run simpleFoam
-      run: foam8 && simpleFoam -help
+      run: foam && simpleFoam -help
 
 
 
