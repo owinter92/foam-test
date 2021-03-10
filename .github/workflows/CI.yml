@@ -27,4 +27,14 @@ jobs:
         cd $FOAM_RUN/tutorials/incompressible/simpleFoam/T3A &&
         ./Allrun &&
         tail -n4 log.simpleFoam | head -n1
-
+    - name: Build foam-test
+      run: |
+        . /opt/openfoam8/etc/bashrc &&
+        mkdir -p $FOAM_RUN &&
+        cd $FOAM_RUN/..
+        git clone https://github.com/owinter92/foam-test.git &&
+        cd foam-test && cd applications && ./Allwmake
+        cp -r $FOAM_TUTORIALS $FOAM_RUN &&
+        cd $FOAM_RUN/tutorials/incompressible/simpleFoam/T3A &&
+        blockMesh && mySimpleFoam
+        tail -n4 log.simpleFoam | head -n1
