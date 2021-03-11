@@ -18,8 +18,7 @@ jobs:
       run: |
         git clone https://github.com/owinter92/foam-test.git
         cd foam-test
-      #. $FOAM8_BASHRC
-      #  && simpleFoam
+        . $FOAM8_BASHRC
       env:
         FOAM8_BASHRC: /opt/openfoam8/etc/bashrc
       shell: bash
