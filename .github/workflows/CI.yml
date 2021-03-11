@@ -14,10 +14,13 @@ jobs:
       uses: actions/checkout@v2
     - name: Install OpenFOAM
       uses: owinter92/openfoam8-install@master
-    - name: Run simpleFoam
+    - name: Run tests
       run: |
+        . $FOAM8_BASHRC
         echo $FOAM8_BASHRC
       shell: bash
+      env:
+        FOAM8_BASHRC: /opt/openfoam8/etc/bashrc
 
 #    - name: Install OpenFOAM
 #      run: |
