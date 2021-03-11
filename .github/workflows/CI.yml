@@ -17,6 +17,7 @@ jobs:
     - name: Run tests
       run: |
         git clone https://github.com/owinter92/foam-test.git
+        cd foam-test
       #. $FOAM8_BASHRC
       #  && simpleFoam
       env:
