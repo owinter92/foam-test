@@ -17,7 +17,7 @@ jobs:
     - name: Run tests
       run: |
         . $FOAM8_BASHRC
-        simpleFoam
+        && simpleFoam
       env:
         FOAM8_BASHRC: /opt/openfoam8/etc/bashrc
       shell: bash
