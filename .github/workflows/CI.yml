@@ -16,8 +16,8 @@ jobs:
       uses: owinter92/openfoam8-install@master
     - name: Run tests
       run: |
-        REPO=$(echo ${{ github.GITHUB_REPOSITORY }} | awk -F "/" "{print $2}")
-        echo $REPO
+        #REPO=$(echo ${{ github.GITHUB_REPOSITORY }} | awk -F "/" "{print $2}")
+        #echo $REPO
         cd ${{ github.GITHUB_WORKSPACE }}
         ls
         #bash ${{ github.GITHUB_WORKSPACE }}/test/simpleFoamLaminar.sh
