@@ -19,6 +19,9 @@ jobs:
         cd ${{ github.GITHUB_WORKSPACE }}
         ls
         pwd
+        cd /home/runner/work/foam-test/foam-test
+        ls
+        pwd
       env:
         FOAM8_BASHRC: /opt/openfoam8/etc/bashrc
       shell: bash
