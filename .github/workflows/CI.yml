@@ -17,8 +17,7 @@ jobs:
     - name: Compile
       run: |
         cd /home/runner/work/foam-test/foam-test
-        chmod +x Allwmake
-        Allwmake
+        bash Allwmake
     - name: Run tests
       run: |
         cd /home/runner/work/foam-test/foam-test/tests
