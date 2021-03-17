@@ -25,10 +25,7 @@ jobs:
     - name: Run tests
       run: |
         cd /home/runner/work/foam-test/foam-test/tests
-        ls
-        pwd
-      #env:
-      #  FOAM8_BASHRC: /opt/openfoam8/etc/bashrc
+        bash simpleFoamLaminar.sh
       shell: bash -l {0}
 #    - name: Install OpenFOAM
 #      run: |
