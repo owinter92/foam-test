@@ -19,14 +19,17 @@ jobs:
         cd /home/runner/work/foam-test/foam-test
         source $FOAM8_BASHRC
         bash Allwmake
+      env:
+        FOAM8_BASHRC: /opt/openfoam8/etc/bashrc
+      shell: bash -l {0}
     - name: Run tests
       run: |
         cd /home/runner/work/foam-test/foam-test/tests
         ls
         pwd
-      env:
-        FOAM8_BASHRC: /opt/openfoam8/etc/bashrc
-      shell: bash
+      #env:
+      #  FOAM8_BASHRC: /opt/openfoam8/etc/bashrc
+      shell: bash -l {0}
 #    - name: Install OpenFOAM
 #      run: |
 #        sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -" &&
