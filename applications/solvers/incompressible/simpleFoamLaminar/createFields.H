@@ -28,19 +28,26 @@ volVectorField U
 
 #include "createPhi.H"
 
-
 label pRefCell = 0;
 scalar pRefValue = 0.0;
 setRefCell(p, simple.dict(), pRefCell, pRefValue);
 mesh.setFluxRequired(p.name());
 
-
-singlePhaseTransportModel laminarTransport(U, phi);
-
-autoPtr<incompressible::momentumTransportModel> turbulence
+IOdictionary transportProperties
 (
-    incompressible::momentumTransportModel::New(U, phi, laminarTransport)
+    IOobject
+    (
+        "transportProperties",
+        runTime.constant(),
+        mesh,
+        IOobject::MUST_READ,
+        IOobject::NO_WRITE
+    )
 );
 
-#include "createMRF.H"
-#include "createFvOptions.H"
+dimensionedScalar nu
+(
+    "nu",
+    dimViscosity,
+    transportProperties.lookup("nu")
+);

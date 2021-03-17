@@ -22,34 +22,27 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    simpleFoam
+    simpleFoamLaminar
 
 Description
-    Steady-state solver for incompressible, turbulent flow, using the SIMPLE
+    Steady-state solver for incompressible flow, using the SIMPLE
     algorithm.
 
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-#include "singlePhaseTransportModel.H"
-#include "kinematicMomentumTransportModel.H"
 #include "simpleControl.H"
-#include "fvOptions.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
 {
-    #include "postProcess.H"
-
     #include "setRootCaseLists.H"
     #include "createTime.H"
     #include "createMesh.H"
     #include "createControl.H"
     #include "createFields.H"
     #include "initContinuityErrs.H"
-
-    turbulence->validate();
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -65,9 +58,6 @@ int main(int argc, char *argv[])
             #include "pEqn.H"
         }
 
-        laminarTransport.correct();
-        turbulence->correct();
-
         runTime.write();
 
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
@@ -77,9 +67,7 @@ int main(int argc, char *argv[])
 
     Info<< "End\n" << endl;
 
-    return 1;
-
-    //return 0;
+    return 0;
 }
 
 
