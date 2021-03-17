@@ -15,8 +15,9 @@ jobs:
     - name: Install OpenFOAM
       uses: owinter92/openfoam8-install@master
     - name: Compile
-      run: cd /home/runner/work/foam-test/foam-test
-           exec Allwmake
+      run: |
+        cd /home/runner/work/foam-test/foam-test
+        exec Allwmake
     - name: Run tests
       run: |
         cd /home/runner/work/foam-test/foam-test/tests
