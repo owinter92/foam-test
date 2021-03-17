@@ -1,2 +1,2 @@
 . $FOAM8_BASHRC
-simpleFoam -help
+simpleFoamLaminar -help
